@@ -76,5 +76,5 @@ const validateCred = (arr) => {
 
 	// feel like a return is needed ?
 };
-
 console.log('validateCred =', validateCred(batch));
+// console.log('modifidedCardArray', modifiedCardsArray);
