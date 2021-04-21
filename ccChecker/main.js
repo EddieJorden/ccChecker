@@ -45,18 +45,18 @@ const validateCred = (arr) => {
 	// iterating over first array of arrays
 	for (let i = 0; i < arr.length; i++) {
 		// iterating over second array of arrays
-		for (let j = arr[i].length - 1; j > 0; j--) {
+		for (let j = arr[i].length - 1; j >= 0; j--) {
 			let currentElement = arr[i][j];
 			let newVariable = null;
 			// if array index is odd multiply value by 2
-			if (j % 2 === 1) {
+			if (j % 2 === 0) {
 				newVariable = currentElement * 2;
 				// if value is greater than 9 subtract 9
 				if (newVariable > 9) {
 					newVariable = newVariable - 9;
 					// push all values to new modifiedCardsArray
 					modifiedCardsArray.push(newVariable);
-				} else modifiedCardsArray.push(currentElement);
+				} else modifiedCardsArray.push(newVariable);
 			} else modifiedCardsArray.push(currentElement);
 		}
 		console.log('modifiedCardsArray', modifiedCardsArray);
@@ -67,13 +67,14 @@ const validateCred = (arr) => {
 				return a + b;
 			}, 0);
 			console.log('summedUpCardNumbers', summedUpCardNumbers);
-			// if summed % 10 = 0 return "valid" else "invald"
+			// if summed % 10 = 0 return "valid" else "invalid"
 			if (summedUpCardNumbers % 10 === 0) {
 				return 'valid';
-			} else return 'invalid';
+			} else 'invalid';
 		}
 	}
+
 	// feel like a return is needed ?
 };
 
-console.log('validateCred', validateCred(batch));
+console.log('validateCred =', validateCred(batch));
