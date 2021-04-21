@@ -1,0 +1,45 @@
+[1mdiff --git a/ccChecker/main.js b/ccChecker/main.js[m
+[1mindex cd3c3f3..59432b7 100644[m
+[1m--- a/ccChecker/main.js[m
+[1m+++ b/ccChecker/main.js[m
+[36m@@ -40,6 +40,7 @@[m [mconst batch = [[m
+ [m
+ let modifiedCardsArray = [];[m
+ let acc = null;[m
+[32m+[m[32mlet summedUpCardNumbers = null;[m
+ [m
+ const validateCred = (arr) => {[m
+ 	// iterating over first array of arrays[m
+[36m@@ -59,22 +60,25 @@[m [mconst validateCred = (arr) => {[m
+ 				} else modifiedCardsArray.push(newVariable);[m
+ 			} else modifiedCardsArray.push(currentElement);[m
+ 		}[m
+[31m-		console.log('modifiedCardsArray', modifiedCardsArray);[m
+ 		// iterate over new array[m
+ 		for (let k = 0; k < modifiedCardsArray.length; k++) {[m
+ 			// Getting sum of numbers[m
+[31m-			let summedUpCardNumbers = modifiedCardsArray.reduce(function (a, b) {[m
+[32m+[m			[32msummedUpCardNumbers = modifiedCardsArray.reduce(function (a, b) {[m
+ 				return a + b;[m
+ 			}, 0);[m
+[31m-			console.log('summedUpCardNumbers', summedUpCardNumbers);[m
+[31m-			// if summed % 10 = 0 return "valid" else "invalid"[m
+[31m-			if (summedUpCardNumbers % 10 === 0) {[m
+[31m-				return 'valid';[m
+[31m-			} else 'invalid';[m
+[32m+[m			[32mconsole.log('modifiedCardsArray', modifiedCardsArray);[m
+ 		}[m
+[32m+[m		[32mconsole.log('summedUpCardNumbers', summedUpCardNumbers);[m
+[32m+[m		[32m// if summed % 10 = 0 return "valid" else "invalid"[m
+[32m+[m		[32mif (summedUpCardNumbers % 10 === 0) {[m
+[32m+[m			[32mreturn 'valid';[m
+[32m+[m		[32m} else 'invalid';[m
+ 	}[m
+ [m
+ 	// feel like a return is needed ?[m
+ };[m
+[32m+[m[32mconsole.log('modifiedCardsArray', modifiedCardsArray);[m
+[32m+[m
+ console.log('validateCred =', validateCred(batch));[m
+[32m+[m[32mconsole.log('summedUpNumbers', summedUpCardNumbers);[m
+ // console.log('modifidedCardArray', modifiedCardsArray);[m
