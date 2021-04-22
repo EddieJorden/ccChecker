@@ -18,6 +18,7 @@ const mystery2 = [5, 4, 6, 6, 1, 0, 0, 8, 6, 1, 6, 2, 0, 2, 3, 9];
 const mystery3 = [6, 0, 1, 1, 3, 7, 7, 0, 2, 0, 9, 6, 2, 6, 5, 6, 2, 0, 3];
 const mystery4 = [4, 9, 2, 9, 8, 7, 7, 1, 6, 9, 2, 1, 7, 0, 9, 3];
 const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3];
+const mystery666 = [9, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3];
 
 // An array of all the arrays above
 const batch = [
@@ -40,6 +41,14 @@ const batch = [
 
 let modifiedCardsArray = [];
 let acc = null;
+let validCards = [];
+let invalidCards = [];
+
+let amexCards = [];
+let visaCards = [];
+let masterCards = [];
+let discoverCards = [];
+let companyNotFound = [];
 
 const validateCred = (arr) => {
 	// iterating over first array of arrays
@@ -48,15 +57,17 @@ const validateCred = (arr) => {
 		for (let j = arr[i].length - 1; j >= 0; j--) {
 			let currentElement = arr[i][j];
 			let newVariable = null;
-			// if array index is odd multiply value by 2
-			if (j % 2 === 0) {
-				newVariable = currentElement * 2;
-				// if value is greater than 9 subtract 9
-				if (newVariable > 9) {
-					newVariable = newVariable - 9;
-					// push all values to new modifiedCardsArray
-					modifiedCardsArray.push(newVariable);
-				} else modifiedCardsArray.push(newVariable);
+			if (j <= arr[i].length - 2) {
+				// if array index is odd multiply value by 2
+				if (j % 2 === 0) {
+					newVariable = currentElement * 2;
+					// if value is greater than 9 subtract 9
+					if (newVariable > 9) {
+						newVariable = newVariable - 9;
+						// push all values to new modifiedCardsArray
+						modifiedCardsArray.push(newVariable);
+					} else modifiedCardsArray.push(newVariable);
+				} else modifiedCardsArray.push(currentElement);
 			} else modifiedCardsArray.push(currentElement);
 		}
 		// iterate over new array
@@ -71,16 +82,46 @@ const validateCred = (arr) => {
 		// if summed % 10 = 0 return "valid" else "invalid"
 		if (summedUpCardNumbers % 10 === 0) {
 			console.log('valid');
+			validCards.push(arr[i]);
 		} else console.log('invalid');
-
-		// clear summedupNumbers
+		invalidCards.push(arr[i]);
+		// placing cards into card issuer category arrays
+		// clears modifiedCardsArray and summedupNumbers
 		modifiedCardsArray.length = 0;
 		summedUpCardNumbers.length = 0;
+	}
+	for (let l = 0; l < validCards.length; l++) {
+		if (validCards[l][0] === 3) {
+			amexCards.push(validCards[l]);
+		} else if (validCards[l][0] === 4) {
+			visaCards.push(validCards[l]);
+		} else if (validCards[l][0] === 5) {
+			masterCards.push(validCards[l]);
+		} else if (validCards[l][0] === 6) {
+			discoverCards.push(validCards[l]);
+		} else companyNotFound.push(validCards[l]);
+	}
+	for (let m = 0; m < invalidCards.length; m++) {
+		if (invalidCards[m][0] === 3) {
+			amexCards.push(invalidCards[m]);
+		} else if (invalidCards[m][0] === 4) {
+			visaCards.push(invalidCards[m]);
+		} else if (invalidCards[m][0] === 5) {
+			masterCards.push(invalidCards[m]);
+		} else if (invalidCards[m][0] === 6) {
+			discoverCards.push(invalidCards[m]);
+		} else companyNotFound.push(invalidCards[m]);
 	}
 	// feel like a return is needed ?
 };
 // console.log('modifiedCardsArray', modifiedCardsArray);
 
 console.log('validateCred =', validateCred(batch));
-
+console.log('validCards', validCards);
+console.log('invalidCards', invalidCards);
+console.log('masterCards', masterCards);
+console.log('visaCards', visaCards);
+console.log('amexCards', amexCards);
+console.log('discoverCards', discoverCards);
+console.log('companyNotFound', companyNotFound);
 // console.log('modifidedCardArray', modifiedCardsArray);
