@@ -40,7 +40,6 @@ const batch = [
 
 let modifiedCardsArray = [];
 let acc = null;
-let summedUpCardNumbers = null;
 
 const validateCred = (arr) => {
 	// iterating over first array of arrays
@@ -66,19 +65,22 @@ const validateCred = (arr) => {
 			summedUpCardNumbers = modifiedCardsArray.reduce(function (a, b) {
 				return a + b;
 			}, 0);
-			console.log('modifiedCardsArray', modifiedCardsArray);
+			// console.log('modifiedCardsArray', modifiedCardsArray);
 		}
 		console.log('summedUpCardNumbers', summedUpCardNumbers);
 		// if summed % 10 = 0 return "valid" else "invalid"
 		if (summedUpCardNumbers % 10 === 0) {
-			return 'valid';
-		} else 'invalid';
-	}
+			console.log('valid');
+		} else console.log('invalid');
 
+		// clear summedupNumbers
+		modifiedCardsArray.length = 0;
+		summedUpCardNumbers.length = 0;
+	}
 	// feel like a return is needed ?
 };
-console.log('modifiedCardsArray', modifiedCardsArray);
+// console.log('modifiedCardsArray', modifiedCardsArray);
 
 console.log('validateCred =', validateCred(batch));
-console.log('summedUpNumbers', summedUpCardNumbers);
+
 // console.log('modifidedCardArray', modifiedCardsArray);
